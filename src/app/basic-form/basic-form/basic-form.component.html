@@ -1,0 +1,48 @@
+<div class="paneContainer">
+  <div class="leftPane">
+  </div>
+  <div class="rightPane" style="width: 50%; height: 100%">
+  </div>
+</div>
+<div class="container">
+  <form [formGroup]="basicFormGroup" (ngSubmit)="validate(basicFormGroup.valid,basicFormGroup)">
+    <mat-card>
+      <mat-card-title>Mon identité</mat-card-title>
+      <mat-card-content>
+        <div>
+          <mat-form-field>
+            <input matInput type="text" formControlName="name" placeholder="Nom">
+            <mat-error *ngIf="basicFormGroup.get('name').hasError('required')">
+              Le nom est requis pour valider le formulaire
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput type="text" formControlName="firstName" placeholder="Prénom">
+            <mat-error *ngIf="basicFormGroup.get('firstName').hasError('required')">
+              Le prénom est requis pour valider le formulaire
+            </mat-error>
+            <mat-error *ngIf="basicFormGroup.get('firstName').hasError('minlength')">
+              Le prenom doit posséder au moins 10 caractères
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput type="number" formControlName="age" placeholder="Age">
+            <mat-error *ngIf="basicFormGroup.get('age').hasError('required')">
+              L'âge est requis pour valider le formulaire
+            </mat-error>
+            <mat-error *ngIf="basicFormGroup.get('age').hasError('min')">
+              Vous devez posséder au moins 5 ans !
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <button type="submit" mat-raised-button color="primary">Valider</button>
+      </mat-card-footer>
+    </mat-card>
+  </form>
+</div>
